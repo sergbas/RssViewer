@@ -84,10 +84,11 @@ public class RssListAdapter extends BaseAdapter {
         //holder.descText.setText(itemRss.getDescription());
 
         String url = itemRss.getUrl();
-        Picasso.with(activity)
-                .load(url)
-                .placeholder(R.drawable.picasso_loading_animation)
-                .into(holder.imageView);
+        if(url != null && url.startsWith("http"))
+            Picasso.with(activity)
+                    .load(url)
+                    .placeholder(R.drawable.picasso_loading_animation)
+                    .into(holder.imageView);
 
         return view;
     }

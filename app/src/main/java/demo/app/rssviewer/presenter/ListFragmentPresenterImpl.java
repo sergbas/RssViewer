@@ -124,7 +124,7 @@ public class ListFragmentPresenterImpl implements IListFragmentPresenter {
             List<ItemRss> itemRssList = new ArrayList<>();
 
             try {
-                //Log.i(TAG, "getListFromRss:" + rssString);
+                Log.i(TAG, "getListFromRss:" + rssString);
 
                 try {
                     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -146,9 +146,11 @@ public class ListFragmentPresenterImpl implements IListFragmentPresenter {
                         e = (Element) title.item(0);
                         String stitle = getCharacterDataFromElement(e);
 
+                        String image = "";
                         NodeList enclosure = element.getElementsByTagName("enclosure");
                         e = (Element) enclosure.item(0);
-                        String image = e.getAttribute("url");
+                        if(e != null && e.hasAttribute("url"))
+                            image = e.getAttribute("url");
 
                         ItemRss itemRss = new ItemRss();
                         itemRss.setId(i);
