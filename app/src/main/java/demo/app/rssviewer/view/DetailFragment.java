@@ -107,7 +107,8 @@ public class DetailFragment extends BaseFragment implements IDetailFragmentView 
 
     @Override
     public void updateViews(String url, String title, String desc) {
-        Picasso.with(activity)
+        if(url != null && url.startsWith("http"))
+            Picasso.with(activity)
                 .load(url)
                 .placeholder(R.drawable.picasso_loading_animation)
                 .into(imageView);
